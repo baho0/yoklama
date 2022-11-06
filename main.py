@@ -1,3 +1,4 @@
+from email.mime import image
 from mimetypes import init
 import cv2
 import numpy as np
@@ -67,7 +68,7 @@ class functions:
             _, image_frame = vid_cam.read()
             img = cv2.cvtColor(image_frame, cv2.COLOR_BGR2GRAY)
             faces = face_detector.detectMultiScale(img, 1.3, 6)
-
+            print(image_frame)
             for (x,y,w,h) in faces:
                 cv2.rectangle(image_frame, (x,y), (x+w,y+h), (255,0,0), 2)
                 count += 1
@@ -86,7 +87,7 @@ while(True):
         2 = yeni öğrenci ekle
         3 = çık
         """)
-    selectedMode = input(">>> ")
+    selectedMode = int(input(">>> "))
     if selectedMode == 1:
         functions.recognize()
     elif selectedMode == 2:

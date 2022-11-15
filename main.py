@@ -4,16 +4,12 @@ import cv2
 import numpy as np
 import trainer
 from logging import exception
-import cv2
-
-
 class student:
     def __init__(self,name,surname,className,id):
         self.name = name
         self.surname= surname
         self.className = className
         self.id = id
-    
 
 class functions:
     def __init__(self):
@@ -55,14 +51,6 @@ class functions:
         face_detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
         face_id=input("Öğrencinin numarasını giriniz >>> ")
-        """while(True):
-            try:
-                facexist = open("dataset/User."+str(face_id)+".1.jpg")
-                face_id+=1
-                
-            except Exception as e:
-                print(e)
-                break"""
         count = 0
         while(True):
             _, image_frame = vid_cam.read()
@@ -86,6 +74,7 @@ while(True):
         1 = yoklama al
         2 = yeni öğrenci ekle
         3 = çık
+        4 = train
         """)
     selectedMode = int(input(">>> "))
     if selectedMode == 1:
@@ -94,5 +83,7 @@ while(True):
         functions.addStudent()
     elif selectedMode == 3:
         break
+    elif selectedMode == 4:
+        trainer.train()
     else:
         print("hatalı giriş")
